@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UHS Listing Area</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .delete-button {
+      background-color: #dc3545;
+    }
+
+    .delete-button:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+
+<h1>UHS Listing Area</h1>
+
+<!-- 🔵 Add Product -->
+<div class="form-container">
+  <div class="form-group">
+    <label for="productId">Product ID</label>
+    <input type="text" id="productId" placeholder="Enter Product ID" />
+  </div>
+  <div class="form-group">
+    <label for="productName">Product Name</label>
+    <input type="text" id="productName" placeholder="Enter Product Name" />
+  </div>
+  <div class="form-group">
+  <label for="price">Price (₹)</label>
+  <input type="number" id="price" placeholder="Enter product price" />
+  </div>
+  <div class="form-group">
+    <label for="productImage">Image URL</label>
+    <input type="text" id="productImage" placeholder="Paste Image URL" />
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" rows="3" placeholder="Product Description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="keywords">Keywords (comma separated)</label>
+    <input type="text" id="keywords" placeholder="e.g., cctv, 4 channel, hd" />
+  </div>
+  <div class="form-group">
+    <label for="brand">Brand</label>
+    <input type="text" id="brand" placeholder="e.g., CP Plus, Hikvision" />
+  </div>
+  <div class="form-group">
+    <label for="type">Type</label>
+    <input type="text" id="type" placeholder="e.g., DVR, Camera, Wire" />
+  </div>
+  <button onclick="addProductToFirebase()">Add Product</button>
+</div>
+
+<!-- 🔴 Delete Product -->
+<div class="form-container">
+  <h3 style="color: red;">Delete Product</h3>
+  <div class="form-group">
+    <label for="deleteProductId">Enter Product ID to Delete</label>
+    <input type="text" id="deleteProductId" placeholder="Enter exact Product ID" />
+  </div>
+  <button class="delete-button" onclick="deleteProductFromFirebase()">Delete Product</button>
+</div>
+
+<!-- 🔗 Go to Page4 -->
+<div style="text-align:center; margin-top: 30px;">
+  <a href="page4.html" style="text-decoration: none; background: #28a745; color: white; padding: 10px 20px; border-radius: 5px;">🔍 View Page4 Products</a>
+</div>
+
+<!-- ✅ Firebase Scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAIF0mh224jNWKeb981w9-bQf243c9PKtQ",
+    authDomain: "uhs-electrical.firebaseapp.com",
+    projectId: "uhs-electrical",
+    storageBucket: "uhs-electrical.appspot.com",
+    messagingSenderId: "1078862466393",
+    appId: "1:1078862466393:web:71690cc373bfae245c1048"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  function addProductToFirebase() {
+    const productId = document.getElementById("productId").value.trim();
+    if (!productId) {
+      alert("❗ Product ID is required");
+      return;
+    }
+
+    const productRef = db.collection("products").doc(productId);
+    productRef.get().then((doc) => {
+      if (doc.exists) {
+        alert("❌ Product ID already exists!");
+      } else {
+        const data = {
+          name: document.getElementById("productName").value.trim(),
+          image: document.getElementById("productImage").value.trim(),
+          description: document.getElementById("description").value.trim(),
+          keywords: document.getElementById("keywords").value.trim(),
+          brand: document.getElementById("brand").value.trim(),
+          type: document.getElementById("type").value.trim(),
+          price: parseFloat(document.getElementById("price").value.trim()) || 0,
+          timestamp: new Date()
+        };
+        productRef.set(data).then(() => {
+          alert("✅ Product added successfully!");
+          clearForm();
+        }).catch((error) => {
+          alert("❌ Error adding product: " + error.message);
+        });
+      }
+    });
+  }
+
+  function deleteProductFromFirebase() {
+    const deleteId = document.getElementById("deleteProductId").value.trim();
+    if (!deleteId) {
+      alert("❗ Enter product ID to delete.");
+      return;
+    }
+
+    db.collection("products").doc(deleteId).delete().then(() => {
+      alert(`🗑 Product with ID '${deleteId}' deleted.`);
+      document.getElementById("deleteProductId").value = "";
+    }).catch((error) => {
+      alert("❌ Error deleting product: " + error.message);
+    });
+  }
+
+  function clearForm() {
+    document.getElementById("productId").value = "";
+    document.getElementById("productName").value = "";
+    document.getElementById("productImage").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("keywords").value = "";
+    document.getElementById("brand").value = "";
+    document.getElementById("type").value = "";
+    document.getElementById("price").value = "";
+  }
+</script>
+
+</body>
+</html>
