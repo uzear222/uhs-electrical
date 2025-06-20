@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <title>UHS ELECTRICAL - CCTV Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +23,12 @@
       padding: 1rem;
     }
     .search-container {
-  padding: 1rem;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  background: #f4f4f4;
-  z-index: 10;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      background: #f4f4f4;
+      z-index: 10;
     }
     .search-container input {
       width: 80%;
@@ -65,20 +64,42 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
     }
     .product-item img {
-      width: 150px;
-      height: auto;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
     }
     .product-details {
       padding: 1rem;
       flex-grow: 1;
     }
-    .product-details h3 {
-      margin-top: 0;
-    }
     .product-details p {
-      margin: 0.5rem 0;
+      margin: 6px 0;
+    }
+    .brand {
+      font-size: 20px;
+      font-weight: bold;
+      color: #003366;
+      margin: 0;
+    }
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .description {
+      font-size: 14px;
+      color: #555;
+    }
+    .price {
+      font-size: 16px;
+      color: green;
+      font-weight: bold;
+      background: #eaffea;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
     }
     .product-details button {
       background: #007bff;
@@ -87,20 +108,19 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-    }
-    .hidden {
-      display: none;
+      margin-top: 0.5rem;
+	  float: right;
     }
     .cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 50%;
-}
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    }
     .cart-icon {
       position: fixed;
       bottom: 20px;
@@ -162,46 +182,53 @@
       font-size: 24px;
       cursor: pointer;
     }
-     nav {
+    nav {
       background-color: #0059b3;
       padding: 12px;
       text-align: center;
     }
-
   </style>
 </head>
 <body>
-  <header>
-    <h1>UHS ELECTRICAL - CCTV Products & Services</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="page2.html">Services</a>
-      <a href="page3.html">About Us</a>
-    </nav>
-  </header>  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search CCTV products/services...">
-  </div>  <section class="menu-card">
-    <h2>Service Price Menu</h2>
-    <ul>
-      <li data-keyword="wiring">Per meter wiring: ₹20</li>
-      <li data-keyword="camera installation">Per camera installation: ₹200</li>
-      <li data-keyword="dvr setup">DVR setup: ₹500</li>
-      <li data-keyword="maintenance">Annual Maintenance: ₹999</li>
-    </ul>
-  </section>  <section class="product-list" id="productList"></section>  <div class="cart-icon" id="cartIcon">
-    🛒
-    <span id="cartCount" class="cart-badge">0</span>
-  </div>  <div class="cart-panel" id="cartPanel">
-    <div class="back-button" id="backBtn">&larr;</div><br>
-    <h3>Your Quotation</h3>
-    <div id="cartItems"></div>
-    <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
-    <div class="cart-actions">
-      <a href="#" id="whatsappLink" target="_blank">Order now on whatsapp</a>
-    </div>
-  </div>  <footer>
-    <p>&copy; 2025 UHS Electrical | <a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a></p>
-  </footer>  <!-- Firebase SDK -->  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>  <script>
+<header>
+  <h1>UHS ELECTRICAL - CCTV Products & Services</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="page2.html">Services</a>
+    <a href="page3.html">About Us</a>
+  </nav>
+</header>
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search CCTV products/services...">
+</div>
+<section class="menu-card">
+  <h2>Service Price Menu</h2>
+  <ul>
+    <li data-keyword="wiring">Per meter wiring: ₹15</li>
+    <li data-keyword="camera installation">Per camera installation: ₹299</li>
+    <li data-keyword="dvr setup">DVR setup: ₹999</li>
+    <li data-keyword="maintenance">Annual Maintenance: ₹1999</li>
+  </ul>
+</section>
+<section class="product-list" id="productList"></section>
+<div class="cart-icon" id="cartIcon">
+  🛒<span id="cartCount" class="cart-badge">0</span>
+</div>
+<div class="cart-panel" id="cartPanel">
+  <div class="back-button" id="backBtn">&larr;</div><br>
+  <h3>Your Quotation</h3>
+  <div id="cartItems"></div>
+  <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
+  <div class="cart-actions">
+    <a href="#" id="whatsappLink" target="_blank">Order now on whatsapp</a>
+  </div>
+</div>
+<footer>
+  <p>&copy; 2025 UHS Electrical | <a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a></p>
+</footer>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
     const firebaseConfig = {
       apiKey: "AIzaSyAIF0mh224jNWKeb981w9-bQf243c9PKtQ",
       authDomain: "uhs-electrical.firebaseapp.com",
@@ -223,18 +250,17 @@
         snapshot.forEach(doc => {
           const data = doc.data();
           html += `
-            <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}">
-              <img src="${data.image}" alt="${data.name}">
-              <div class="product-details">
-                <h3>${data.name}</h3>
-                <p>${data.description}</p>
-                <p><strong>Brand </strong> ${data.brand}</p>
-                <p><strong>Type </strong> ${data.type}</p>
-                <p><strong>Price </strong> ${data.price}</p>
-                <button class="add-to-cart">Add to Cart</button>
-              </div>
-            </div>
-          `;
+      <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}">
+        <img src="${data.image}" alt="${data.name}">
+        <div class="product-details">
+          <p class="brand">${data.brand}</p>
+          <p class="product-name">${data.name}</p>
+          <p class="description">${data.description}</p>
+          <p class="price">₹ <span>${data.price}/-</span></p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </div>
+    `;
         });
         listContainer.innerHTML = html;
 

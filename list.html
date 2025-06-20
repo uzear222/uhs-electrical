@@ -81,7 +81,7 @@
   </div>
   <div class="form-group">
     <label for="productName">Product Name</label>
-    <input type="text" id="productName" placeholder="Enter Product Name" />
+    <input type="text" id="productName" placeholder="Enter Product or Brand Name" />
   </div>
   <div class="form-group">
   <label for="price">Price (₹)</label>
@@ -92,9 +92,10 @@
     <input type="text" id="productImage" placeholder="Paste Image URL" />
   </div>
   <div class="form-group">
-    <label for="description">Description</label>
-    <textarea id="description" rows="3" placeholder="Product Description"></textarea>
-  </div>
+  <label for="description">Description</label>
+  <textarea id="description" rows="3" placeholder="Product Description"></textarea>
+  <small id="wordCount" style="color: #777;">Words: 0 / 35</small>
+</div>
   <div class="form-group">
     <label for="keywords">Keywords (comma separated)</label>
     <input type="text" id="keywords" placeholder="e.g., cctv, 4 channel, hd" />
@@ -199,6 +200,22 @@
     document.getElementById("type").value = "";
     document.getElementById("price").value = "";
   }
+</script>
+<script>
+  const descriptionField = document.getElementById("description");
+  const wordCounter = document.getElementById("wordCount");
+
+  descriptionField.addEventListener("input", () => {
+    const words = descriptionField.value.trim().split(/\s+/);
+    const wordCount = words[0] === "" ? 0 : words.length;
+
+    if (wordCount > 35) {
+      alert("❌ Word limit exceeded! Only 35 words allowed.");
+      descriptionField.value = words.slice(0, 35).join(" ");
+    }
+
+    wordCounter.textContent = `Words: ${Math.min(wordCount, 35)} / 35`;
+  });
 </script>
 
 </body>
