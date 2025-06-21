@@ -1,565 +1,149 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-  <title>UHS ELECTRICAL - CCTV Camera Services in Surat</title>
-  <meta name="description" content="UHS ELECTRICAL provides professional CCTV installation, wiring, and camera services in Surat. Trusted brands like CP Plus, Hikvision, Dahua, and Uniview.">
-  <meta name="keywords" content="CCTV Surat, Camera installation Surat, UHS ELECTRICAL, CP Plus, Hikvision, Dahua, Uniview, CCTV repair, CCTV shop Surat">
-  <meta property="og:title" content="UHS ELECTRICAL - CCTV in Surat" />
-  <meta property="og:description" content="Affordable and reliable CCTV installation and services in Surat by UHS ELECTRICAL." />
-  <meta property="og:image" content="https://uhselectrical.in/img/logo.png" />
-  <meta property="og:url" content="https://uhselectrical.in/page4.html" />
+  <meta
+  name="google-site-verification"
+  content="mkv4KHYM65f2Xef_fBbgi7L_wJq1sQQIpdf3IPMqUsQ"
+   />
+  <title>UHS Electrical</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f4f4f4;
-    }
-    header {
-      background-color: #003366;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    footer {
-      background: #1e1e1e;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
-    .search-container {
-      padding: 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      background: #f4f4f4;
-      z-index: 10;
-    }
-    .search-container input {
-      width: 80%;
-      padding: 0.5rem;
-      font-size: 1rem;
-    }
-    .menu-card {
-      background: #fff;
-      margin: 1rem auto;
-      padding: 1rem;
-      max-width: 800px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .menu-card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .menu-card ul li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #ddd;
-    }
-    .product-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-width: 800px;
-      margin: 2rem auto;
-    }
-    .product-item {
-      display: flex;
-      background: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 100%;
-    }
-    .product-item img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-    }
-    .product-details {
-      padding: 1rem;
-      flex-grow: 1;
-    }
-    .product-details p {
-      margin: 6px 0;
-    }
-    .brand {
-      font-size: 20px;
-      font-weight: bold;
-      color: #003366;
-      margin: 0;
-    }
-    .product-name {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .description {
-      font-size: 14px;
-      color: #555;
-    }
-    .price {
-      font-size: 16px;
-      color: green;
-      font-weight: bold;
-      background: #eaffea;
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-    .product-details button {
-      background: #007bff;
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 0.5rem;
-	  float: right;
-    }
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: red;
-      color: white;
-      font-size: 12px;
-      padding: 2px 6px;
-      border-radius: 50%;
-    }
-    .cart-icon {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #007bff;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 999;
-    }
-    .cart-panel {
-      position: fixed;
-      right: 0;
-      top: 0;
-      width: 300px;
-      height: 100%;
-      background: #fff;
-      border-left: 2px solid #ccc;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      z-index: 1000;
-      padding: 20px;
-      overflow-y: auto;
-    }
-    .cart-panel.open {
-      transform: translateX(0);
-    }
-    .cart-panel h3 {
-      margin-top: 0;
-    }
-    .cart-item {
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-    }
-    .cart-total {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .cart-actions {
-      margin-top: 15px;
-      text-align: center;
-    }
-    .cart-actions a {
-      display: inline-block;
-      background: green;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .back-button {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    nav {
+  <!--<style>
+	nav {
       background-color: #0059b3;
       padding: 12px;
       text-align: center;
     }
-	@media (max-width: 600px) {
-  .product-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .product-item img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-  }
-
-  .product-details {
-    padding: 0.8rem;
-  }
-
-  .product-details p {
-    font-size: 14px;
-  }
-
-  .product-details h3 {
-    font-size: 16px;
-  }
-
-  .product-details button {
-    margin-top: 10px;
-  }
- }
-.product-details p {
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* max lines shown */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.product-details h3,
-.product-details p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-.product-item {
-  min-height: 180px;
-  max-height: 100%;
-}
-.brand-filter img:hover {
-  transform: scale(1.1);
-  transition: 0.2s ease;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
-  border-radius: 8px;
-}
-.magnify-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.magnify-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.magnify-lens {
-  position: absolute;
-  border: 2px solid #000;
-  border-radius: 50%;
-  cursor: none;
-  width: 100px;
-  height: 100px;
-  visibility: hidden;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-size: 400% 400%;
-  z-index: 10;
-}
-.magnify-lens {
-  position: absolute;
-  border: 2px solid #000;
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  cursor: none;
-  pointer-events: none;
-  background-repeat: no-repeat;
-  background-size: 400% 400%;
-  visibility: hidden;
-  z-index: 10;
-}
-
-.magnify-img:hover {
-  cursor: none; /* 👈 Hide cursor when zoom is active */
-}
-
-	
-  </style>
+  </style>-->
 </head>
 <body>
-<header>
-  <h1>UHS ELECTRICAL - CCTV Products & Services</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="page2.html">Services</a>
-    <a href="page3.html">About Us</a>
-  </nav>
-</header>
-<div class="brand-filter" style="text-align:center; margin: 1rem 0;">
-  <img src="img/cpplus.png" alt="CP Plus" onclick="filterByBrand('CP Plus')" style="width:100px; cursor:pointer; margin: 0 5px;">
-  <img src="img/hikvision.png" alt="Hikvision" onclick="filterByBrand('Hikvision')" style="width:100px; cursor:pointer; margin: 0 5px;">
-  <img src="img/dahua.png" alt="Dahua" onclick="filterByBrand('Dahua')" style="width:100px; cursor:pointer; margin: 0 5px;">
-  <img src="img/uniview.png" alt="Uniview" onclick="filterByBrand('UNV')" style="width:100px; cursor:pointer; margin: 0 5px;">
-</div>
-<div class="search-container">
-  <input type="text" id="searchInput" placeholder="Search CCTV products/services...">
-</div>
-<section class="menu-card">
-  <h2>Service Price Menu</h2>
-  <ul>
-    <li data-keyword="wiring">Per meter wiring: ₹15</li>
-    <li data-keyword="camera installation">Per camera installation: ₹299</li>
-    <li data-keyword="dvr setup">DVR setup: ₹999</li>
-    <li data-keyword="maintenance">Annual Maintenance: ₹1999</li>
-  </ul>
-</section>
-<section class="product-list" id="productList"></section>
-<div class="cart-icon" id="cartIcon">
-  🛒<span id="cartCount" class="cart-badge">0</span>
-</div>
-<div class="cart-panel" id="cartPanel">
-  <div class="back-button" id="backBtn">&larr;</div><br>
-  <h3>Your Quotation</h3>
-  <div id="cartItems"></div>
-  <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
-  <div class="cart-actions">
-    <a href="#" id="whatsappLink" target="_blank">Order now on whatsapp</a>
-  </div>
-</div>
+<main>
+  <section class="hero">
+    <h1>Welcome to UHS Electrical</h1>
+    <p>Your one-stop solution: <strong>"Powering Your Digital World"</strong></p>
+    <!-- ❌ Direct link removed, JS will handle redirection -->
+    <button class="btn" id="exploreBtn">Shopping Area</button><br><br>
+    <nav>
+    <a href="page2.html"><u><b>Explore Services</b></u></a>
+    </nav>
+  </section>
+
+  <!-- 🔹 Registration Form -->
+  <h2 align="center">Register for Our Services</h2>
+<form id="registrationForm">
+  <label for="regName">Your Name</label>
+  <input type="text" id="regName" required>
+
+  <label for="regNumber">Your Phone Number</label>
+  <input type="tel" id="regNumber" required>
+
+  <label for="regEmail">Your Email</label>
+  <input type="email" id="regEmail" required>
+
+  <button type="submit">Register</button>
+</form>
+
+<p align="center" id="form-message" style="color:green; display:none;">
+  Thank you! We will contact you soon.
+</p>
+
+  <p align=center id="form-message" style="color:green; display:none;">
+    Thank you! We will contact you soon.
+  </p>
+
+  <!-- 🔸 Review Form -->
+  <section id="review">
+    <h2 align="center">Submit a Review</h2>
+    <form id="reviewForm">
+      <input type="text" id="reviewName" placeholder="Your Name" required>
+      <input type="email" id="reviewEmail" placeholder="Your Email" required><br>
+      <textarea id="reviewMessage" placeholder="Your Review" required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+    <p align="center" id="review-success" style="color:green; display:none;">
+      Review submitted successfully!
+    </p>
+  </section>
+</main>
+
 <footer>
-  <p>&copy; 2025 UHS Electrical | <a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a></p>
+  <p>&copy; 2025 UHS Electrical</p>
+  <p>Call: <a href="tel:+918156005721">+91 81560 05721</a> |
+    Email: <a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a></p>
 </footer>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAIF0mh224jNWKeb981w9-bQf243c9PKtQ",
-      authDomain: "uhs-electrical.firebaseapp.com",
-      projectId: "uhs-electrical",
-      storageBucket: "uhs-electrical.appspot.com",
-      messagingSenderId: "1078862466393",
-      appId: "1:1078862466393:web:71690cc373bfae245c1048"
-    };
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+<!-- ✅ Firebase + Logic -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-    window.onload = function () {
-      const listContainer = document.getElementById("productList");
-      listContainer.innerHTML = "Loading products...";
-
-      db.collection("products").orderBy("timestamp", "desc").get().then(snapshot => {
-        let html = "";
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          html += `
-      <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}">
-      <div class="img-container">
-		<img src="${data.image}" alt="${data.name}" class="magnify-img">
-	  </div>
-        <div class="product-details">
-          <p class="brand">${data.brand}</p>
-          <p class="product-name">${data.name}</p>
-          <p class="description">${data.description}</p>
-          <p class="price" title="Including 18% GST">₹ <span>${data.price.toLocaleString('en-IN')}/-</span>  <span style="font-size: 12px; color: gray;">(Incl. 18% GST)</span></p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-      </div>
-    `;
-        });
-        listContainer.innerHTML = html;
-		
-		// After setting listContainer.innerHTML = html;
-document.querySelectorAll('.magnify-img').forEach(img => {
-  const lens = document.createElement('div');
-  lens.classList.add('magnify-lens');
-  img.parentElement.style.position = 'relative';
-  img.parentElement.appendChild(lens);
-
-  lens.style.backgroundImage = `url('${img.src}')`;
-
-  img.addEventListener('mousemove', moveLens);
-  lens.addEventListener('mousemove', moveLens);
-  img.addEventListener('mouseenter', () => lens.style.visibility = 'visible');
-  img.addEventListener('mouseleave', () => lens.style.visibility = 'hidden');
-
-  function moveLens(e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.pageX - rect.left - window.pageXOffset;
-    const y = e.pageY - rect.top - window.pageYOffset;
-
-    let lensX = x - lens.offsetWidth / 2;
-    let lensY = y - lens.offsetHeight / 2;
-
-    lens.style.left = lensX + 'px';
-    lens.style.top = lensY + 'px';
-
-    const zoomX = x / img.width * 100;
-    const zoomY = y / img.height * 100;
-
-    lens.style.backgroundPosition = `${zoomX}% ${zoomY}%`;
-  }
-});
-
-        document.querySelectorAll(".add-to-cart").forEach(button => {
-          button.addEventListener("click", function () {
-            const product = this.closest(".product-item");
-            const name = product.getAttribute("data-name");
-            const price = parseFloat(product.getAttribute("data-price")) || 0; 
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-              existing.qty++;
-            } else {
-              cart.push({ name, price, qty: 1 });
-            }
-            updateCart();
-          });
-        });
-      });
-    };
-
-    // search, cart logic, etc.
-    // (same as your existing working JS logic — not repeated here for brevity)
-  </script>
-  <script>
-  let lastSelectedBrand = null;
-
-function filterByBrand(brand) {
-  if (lastSelectedBrand === brand) {
-    brand = 'all'; // Reset filter
-    lastSelectedBrand = null;
-  } else {
-    lastSelectedBrand = brand;
-  }
-
-  document.querySelectorAll('.product-item').forEach(item => {
-    const itemBrand = item.querySelector(' .brand')?.textContent.trim() || '';
-    if (brand === 'all' || itemBrand.toLowerCase() === brand.toLowerCase()) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
-  });
-}
-  let cart = []; // ✅ Global cart array
-
-  const cartIcon = document.getElementById("cartIcon");
-  const cartPanel = document.getElementById("cartPanel");
-  const cartItemsContainer = document.getElementById("cartItems");
-  const cartTotalElement = document.getElementById("cartTotal");
-  const whatsappLink = document.getElementById("whatsappLink");
-  const backBtn = document.getElementById("backBtn");
-
-  cartIcon.addEventListener("click", () => {
-    cartPanel.classList.add("open");
-  });
-
-  backBtn.addEventListener("click", () => {
-    cartPanel.classList.remove("open");
-  });
-
-  function updateCart() {
-    document.getElementById("cartCount").textContent = cart.length;
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
-
-    cart.forEach(item => {
-      const div = document.createElement("div");
-      div.classList.add("cart-item");
-      div.innerHTML = `
-        <div><strong>${item.name}</strong></div>
-        <div>₹${item.price} x ${item.qty} = ₹${item.price * item.qty}</div>
-        <div>
-          <button onclick="updateQty('${item.name}', -1)">-</button>
-          <button onclick="updateQty('${item.name}', 1)">+</button>
-        </div>
-      `;
-      cartItemsContainer.appendChild(div);
-      total += item.price * item.qty;
-    });
-
-    cartTotalElement.textContent = total;
-
-    let message = "Hello%20UHS%20Team%2C%0A%0AI%20would%20like%20to%20book%20the%20following%20items%3A%0A";
-    cart.forEach(item => {
-      message += `- ${item.name} (₹${item.price} x ${item.qty})%0A`;
-    });
-    message += `%0ATotal%3A%20₹${total}%0A%0APlease%20confirm%20availability.`;
-    whatsappLink.href = `https://wa.me/918156005721?text=${message}`;
-  }
-
-  window.updateQty = function(name, change) {
-    const item = cart.find(i => i.name === name);
-    if (!item) return;
-    item.qty += change;
-    if (item.qty <= 0) {
-      cart = cart.filter(i => i.name !== name);
-    }
-    updateCart();
+  const firebaseConfig = {
+    apiKey: "AIzaSyAIF0mh224jNWKeb981w9-bQf243c9PKtQ",
+    authDomain: "uhs-electrical.firebaseapp.com",
+    databaseURL: "https://uhs-electrical-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "uhs-electrical",
+    storageBucket: "uhs-electrical.appspot.com",
+    messagingSenderId: "1078862466393",
+    appId: "1:1078862466393:web:71690cc373bfae245c1048"
   };
-</script>
-<script>
-  const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", function () {
-    const term = this.value.toLowerCase();
 
-    document.querySelectorAll(".product-item").forEach(item => {
-      const name = item.getAttribute("data-name").toLowerCase();
-      const keywords = item.getAttribute("data-keyword").toLowerCase();
-      
-      if (name.includes(term) || keywords.includes(term)) {
-        item.style.display = "flex";
-      } else {
-        item.style.display = "none";
-      }
-    });
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // 🔹 Handle Registration Form
+  document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("regName").value.trim();
+    const number = document.getElementById("regNumber").value.trim();
+    const email = document.getElementById("regEmail").value.trim();
+
+    if (name !== "" && number !== "" && email !== "") {
+      push(ref(db, "registrations"), {
+        name, number, email,
+        timestamp: new Date().toISOString()
+      });
+
+      // ✅ Save registration status locally
+      localStorage.setItem("isRegistered", "true");
+
+      document.getElementById("form-message").style.display = "block";
+      this.reset();
+
+      setTimeout(() => {
+  window.location.href = "page2.html";
+}, 1500); // 1.5 second ke baad page2 pe redirect
+    }
   });
-</script>
-<script>
-document.querySelectorAll('.magnify-img').forEach(img => {
-  const lens = document.createElement('div');
-  lens.classList.add('magnify-lens');
-  img.parentElement.style.position = 'relative';
-  img.parentElement.appendChild(lens);
 
-  lens.style.backgroundImage = `url('${img.src}')`;
+  // 🔸 Handle Review Form
+  document.getElementById("reviewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("reviewName").value.trim();
+    const email = document.getElementById("reviewEmail").value.trim();
+    const message = document.getElementById("reviewMessage").value.trim();
 
-  img.addEventListener('mousemove', moveLens);
-  lens.addEventListener('mousemove', moveLens);
-  img.addEventListener('mouseenter', () => lens.style.visibility = 'visible');
-  img.addEventListener('mouseleave', () => lens.style.visibility = 'hidden');
+    push(ref(db, "reviews"), {
+      name, email, message,
+      timestamp: new Date().toISOString()
+    });
 
-  function moveLens(e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.pageX - rect.left - window.pageXOffset;
-    const y = e.pageY - rect.top - window.pageYOffset;
+    document.getElementById("review-success").style.display = "block";
+    this.reset();
+  });
 
-    let lensX = x - lens.offsetWidth / 2;
-    let lensY = y - lens.offsetHeight / 2;
-
-    lens.style.left = lensX + 'px';
-    lens.style.top = lensY + 'px';
-
-    const zoomX = x / img.width * 100;
-    const zoomY = y / img.height * 100;
-
-    lens.style.backgroundPosition = `${zoomX}% ${zoomY}%`;
-  }
-});
-</script>
-<script>
-  document.getElementById("whatsappLink").addEventListener("click", function(e) {
-    const isRegistered = localStorage.getItem("isRegistered");
-
-    if (!isRegistered || isRegistered !== "true") {
-      e.preventDefault(); // stop link from opening
-      alert("👋 Dear Customer,\n\nPlease register with us before placing an order.\nThis helps us serve you better and stay in touch!\n\n🙏 Thank you for understanding.");
+  // 🔸 Explore Button → Conditional Navigation
+  document.getElementById("exploreBtn").addEventListener("click", function() {
+    const registered = localStorage.getItem("isRegistered");
+    if (registered === "true") {
+      window.location.href = "index.html";
+    } else {
+      alert("Please register first before exploring services.");
     }
   });
 </script>
+
 </body>
 </html>
