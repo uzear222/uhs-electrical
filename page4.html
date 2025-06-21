@@ -1,6 +1,12 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
-  <title>UHS ELECTRICAL - CCTV Services</title>
+  <title>UHS ELECTRICAL - CCTV Camera Services in Surat</title>
+  <meta name="description" content="UHS ELECTRICAL provides professional CCTV installation, wiring, and camera services in Surat. Trusted brands like CP Plus, Hikvision, Dahua, and Uniview.">
+  <meta name="keywords" content="CCTV Surat, Camera installation Surat, UHS ELECTRICAL, CP Plus, Hikvision, Dahua, Uniview, CCTV repair, CCTV shop Surat">
+  <meta property="og:title" content="UHS ELECTRICAL - CCTV in Surat" />
+  <meta property="og:description" content="Affordable and reliable CCTV installation and services in Surat by UHS ELECTRICAL." />
+  <meta property="og:image" content="https://uhselectrical.in/img/logo.png" />
+  <meta property="og:url" content="https://uhselectrical.in/page4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -232,6 +238,54 @@
   min-height: 180px;
   max-height: 100%;
 }
+.brand-filter img:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+.magnify-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.magnify-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.magnify-lens {
+  position: absolute;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 100px;
+  height: 100px;
+  visibility: hidden;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  z-index: 10;
+}
+.magnify-lens {
+  position: absolute;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  cursor: none;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  visibility: hidden;
+  z-index: 10;
+}
+
+.magnify-img:hover {
+  cursor: none; /* 👈 Hide cursor when zoom is active */
+}
 
 	
   </style>
@@ -245,6 +299,12 @@
     <a href="page3.html">About Us</a>
   </nav>
 </header>
+<div class="brand-filter" style="text-align:center; margin: 1rem 0;">
+  <img src="img/cpplus.png" alt="CP Plus" onclick="filterByBrand('CP Plus')" style="width:100px; cursor:pointer; margin: 0 5px;">
+  <img src="img/hikvision.png" alt="Hikvision" onclick="filterByBrand('Hikvision')" style="width:100px; cursor:pointer; margin: 0 5px;">
+  <img src="img/dahua.png" alt="Dahua" onclick="filterByBrand('Dahua')" style="width:100px; cursor:pointer; margin: 0 5px;">
+  <img src="img/uniview.png" alt="Uniview" onclick="filterByBrand('UNV')" style="width:100px; cursor:pointer; margin: 0 5px;">
+</div>
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search CCTV products/services...">
 </div>
@@ -298,18 +358,52 @@
           const data = doc.data();
           html += `
       <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}">
-        <img src="${data.image}" alt="${data.name}">
+      <div class="img-container">
+		<img src="${data.image}" alt="${data.name}" class="magnify-img">
+	  </div>
         <div class="product-details">
           <p class="brand">${data.brand}</p>
           <p class="product-name">${data.name}</p>
           <p class="description">${data.description}</p>
-          <p class="price">₹ <span>${data.price}/-</span></p>
+          <p class="price" title="Including 18% GST">₹ <span>${data.price.toLocaleString('en-IN')}/-</span>  <span style="font-size: 12px; color: gray;">(Incl. 18% GST)</span></p>
           <button class="add-to-cart">Add to Cart</button>
         </div>
       </div>
     `;
         });
         listContainer.innerHTML = html;
+		
+		// After setting listContainer.innerHTML = html;
+document.querySelectorAll('.magnify-img').forEach(img => {
+  const lens = document.createElement('div');
+  lens.classList.add('magnify-lens');
+  img.parentElement.style.position = 'relative';
+  img.parentElement.appendChild(lens);
+
+  lens.style.backgroundImage = `url('${img.src}')`;
+
+  img.addEventListener('mousemove', moveLens);
+  lens.addEventListener('mousemove', moveLens);
+  img.addEventListener('mouseenter', () => lens.style.visibility = 'visible');
+  img.addEventListener('mouseleave', () => lens.style.visibility = 'hidden');
+
+  function moveLens(e) {
+    const rect = img.getBoundingClientRect();
+    const x = e.pageX - rect.left - window.pageXOffset;
+    const y = e.pageY - rect.top - window.pageYOffset;
+
+    let lensX = x - lens.offsetWidth / 2;
+    let lensY = y - lens.offsetHeight / 2;
+
+    lens.style.left = lensX + 'px';
+    lens.style.top = lensY + 'px';
+
+    const zoomX = x / img.width * 100;
+    const zoomY = y / img.height * 100;
+
+    lens.style.backgroundPosition = `${zoomX}% ${zoomY}%`;
+  }
+});
 
         document.querySelectorAll(".add-to-cart").forEach(button => {
           button.addEventListener("click", function () {
@@ -332,6 +426,25 @@
     // (same as your existing working JS logic — not repeated here for brevity)
   </script>
   <script>
+  let lastSelectedBrand = null;
+
+function filterByBrand(brand) {
+  if (lastSelectedBrand === brand) {
+    brand = 'all'; // Reset filter
+    lastSelectedBrand = null;
+  } else {
+    lastSelectedBrand = brand;
+  }
+
+  document.querySelectorAll('.product-item').forEach(item => {
+    const itemBrand = item.querySelector(' .brand')?.textContent.trim() || '';
+    if (brand === 'all' || itemBrand.toLowerCase() === brand.toLowerCase()) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
   let cart = []; // ✅ Global cart array
 
   const cartIcon = document.getElementById("cartIcon");
@@ -404,6 +517,48 @@
         item.style.display = "none";
       }
     });
+  });
+</script>
+<script>
+document.querySelectorAll('.magnify-img').forEach(img => {
+  const lens = document.createElement('div');
+  lens.classList.add('magnify-lens');
+  img.parentElement.style.position = 'relative';
+  img.parentElement.appendChild(lens);
+
+  lens.style.backgroundImage = `url('${img.src}')`;
+
+  img.addEventListener('mousemove', moveLens);
+  lens.addEventListener('mousemove', moveLens);
+  img.addEventListener('mouseenter', () => lens.style.visibility = 'visible');
+  img.addEventListener('mouseleave', () => lens.style.visibility = 'hidden');
+
+  function moveLens(e) {
+    const rect = img.getBoundingClientRect();
+    const x = e.pageX - rect.left - window.pageXOffset;
+    const y = e.pageY - rect.top - window.pageYOffset;
+
+    let lensX = x - lens.offsetWidth / 2;
+    let lensY = y - lens.offsetHeight / 2;
+
+    lens.style.left = lensX + 'px';
+    lens.style.top = lensY + 'px';
+
+    const zoomX = x / img.width * 100;
+    const zoomY = y / img.height * 100;
+
+    lens.style.backgroundPosition = `${zoomX}% ${zoomY}%`;
+  }
+});
+</script>
+<script>
+  document.getElementById("whatsappLink").addEventListener("click", function(e) {
+    const isRegistered = localStorage.getItem("isRegistered");
+
+    if (!isRegistered || isRegistered !== "true") {
+      e.preventDefault(); // stop link from opening
+      alert("👋 Dear Customer,\n\nPlease register with us before placing an order.\nThis helps us serve you better and stay in touch!\n\n🙏 Thank you for understanding.");
+    }
   });
 </script>
 </body>
