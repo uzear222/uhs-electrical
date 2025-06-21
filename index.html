@@ -545,52 +545,107 @@ function filterByBrand(brand) {
 <script>
 // Floating AI Assistant Script for UHS ELECTRICAL
 
-const chatToggle = document.getElementById("chat-toggle");
-const chatBox = document.getElementById("ai-assistant");
-const chatInput = document.getElementById("chat-input");
-const chatBody = document.getElementById("chat-body");
+const chatToggle = document.getElementById("chat-toggle"); const chatBox = document.getElementById("ai-assistant"); const chatInput = document.getElementById("chat-input"); const chatBody = document.getElementById("chat-body");
 
-// Toggle button open/close
-chatToggle.addEventListener("click", () => {
-  chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
-});
+chatToggle.addEventListener("click", () => { chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none"; });
 
-// Handle Enter press
-chatInput.addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    const input = this.value.trim().toLowerCase();
-    if (!input) return;
-    this.value = "";
-    appendMessage("You", input);
+chatInput.addEventListener("keypress", function (e) { if (e.key === "Enter") { const input = this.value.trim().toLowerCase(); if (!input) return; this.value = ""; appendMessage("You", input);
 
-    let reply = "I'm here to help you!";
+let reply = "I'm here to help you!";
 
-    if (input.includes("service")) {
-      reply = "We offer a wide range of services like CCTV, networking, fire safety, internet setup, laptop/PC repair, and AC ducting.";
-    } else if (input.includes("price")) {
-      reply = "Prices vary by service. You can check our menu or contact UHS support for details.";
-    } else if (input.includes("quotation")) {
-      reply = "You can create a quotation by adding products to the cart 🛒.";
-    } else if (input.includes("contact")) {
-      reply = "Team Support: 8141331376<br>Authority: 8156005721<br>Email: uhselectrical@gmail.com";
-    } else if (input.includes("location")) {
-      reply = "Our office is in Rander, near Adajan, Surat. We serve the whole Surat and nearby areas.";
-    } else if (input.includes("trust")) {
-      reply = "Yes, UHS ELECTRICAL is a trusted and registered company with a valid GST number.";
-    } else if (input.includes("internet")) {
-      reply = "We are partners with Fiber Velly, GTPL, and You Broadband. For plan details, contact UHS team.";
-    }
-      else if (
-  input.includes("ac duct") || 
-  input.includes("ac cooling") || 
-  input.includes("ducting") || 
-  input.includes("cooling") || 
-  input.includes("air conditioning")
-) {
-  reply = "Yes! We offer AC ducting services for homes, offices, and commercial buildings. UHS Electrical provides high-quality duct design and installation. Contact us for inspection and pricing.";
-  }	else {
-      reply = `I'm not sure how to help with that 🤔<br><strong>Would you like to talk to a real person?</strong><br><button onclick="redirectToWhatsApp()" style="margin-top: 5px;">Yes, connect me</button>`;
-    }
+// === SERVICES ===
+if (input.includes("cctv")) {
+  reply = "We offer complete CCTV services including installation, wiring, DVR setup, and maintenance.";
+  if (input.includes("price") || input.includes("cost")) {
+    reply += "\n\n💰 Prices:\n- Wiring: ₹15/meter\n- Installation: ₹299/camera\n- DVR Setup: ₹999\n- Maintenance: ₹1999/year";
+  }
+}
+
+else if (input.includes("internet") || input.includes("wifi") || input.includes("fiber")) {
+  reply = "We provide home-to-home internet setup via Fiber Velly, GTPL, and You Broadband.";
+  if (input.includes("price") || input.includes("plan")) {
+    reply += "\n\n📶 Plans start from ₹399/month. Contact us for more details.";
+  }
+} else if (input.includes("service") || input.includes("services") || input.includes("kaam") || input.includes("kya karte ho")) {
+  reply = `
+Here's what we offer at <strong>UHS ELECTRICAL</strong>:<br><br>
+
+<b>🔐 CCTV Services:</b><br>
+• Camera installation<br>
+• DVR/NVR setup<br>
+• Wiring & maintenance<br><br>
+
+<b>🌐 Internet/WiFi:</b><br>
+• Broadband connection<br>
+• Fiber cabling<br>
+• Router setup (Fiber Velly, GTPL, You Broadband)<br><br>
+
+<b>💻 Laptop/Desktop:</b><br>
+• Hardware & software repair<br>
+• Windows installation (licensed)<br>
+• Antivirus setup, memory upgrades<br><br>
+
+<b>❄ AC Ducting:</b><br>
+• Residential & commercial ducting<br>
+• Custom layout design<br><br>
+
+<b>🔥 Fire Safety:</b><br>
+• Fire alarm & detector installation<br>
+• Fire extinguisher setup<br>
+• Fire safety cabling<br><br>
+
+<b>🖧 Networking:</b><br>
+• LAN & Ethernet cabling<br>
+• Server/Router installation<br>
+• Wi-Fi zone setup<br><br>
+
+Need pricing? Just ask like: <i>"price of CCTV installation"</i> 📊
+`;
+}
+else if (input.includes("laptop") || input.includes("desktop") || input.includes("pc")) {
+  reply = "We handle all laptop & desktop services: repairing, upgrades, antivirus, Windows installation, and data recovery.";
+  if (input.includes("price") || input.includes("cost")) {
+    reply += "\n\n🛠 Services start from ₹299. For detailed pricing, kindly WhatsApp us.";
+  }
+}
+else if (input.includes("ac") || input.includes("ducting")) {
+  reply = "We provide AC ducting installation and repair services for residential and commercial spaces.";
+  if (input.includes("price") || input.includes("cost")) {
+    reply += "\n\n❄ Pricing depends on duct length and layout. Contact us with your requirements.";
+  }
+}
+else if (input.includes("fire") || input.includes("safety") || input.includes("extinguisher")) {
+  reply = "We install fire safety systems including extinguishers, alarms, and compliance tools.";
+  if (input.includes("price") || input.includes("cost")) {
+    reply += "\n\n🔥 Fire extinguisher setup starts from ₹1599. For full project pricing, contact UHS.";
+  }
+}
+else if (input.includes("networking") || input.includes("lan") || input.includes("cabling")) {
+  reply = "We set up and maintain networking infrastructure including structured LAN cabling and server connections.";
+  if (input.includes("price") || input.includes("cost")) {
+    reply += "\n\n🖧 Pricing varies by project size. Please share your setup plan via WhatsApp.";
+  }
+}
+// === GENERAL ===
+else if (input.includes("quotation")) {
+  reply = "You can create your quotation by adding products to the cart 🛒. Total cost will be shown instantly.";
+}
+else if (input.includes("brands")) {
+  reply = "We work with trusted brands: CP Plus, Hikvision, Dahua, and Uniview (UNV).";
+}
+else if (input.includes("location") || input.includes("address")) {
+  reply = "We are based in Rander, near Adajan, Surat. We serve the entire Surat area.";
+}
+else if (input.includes("contact") || input.includes("phone") || input.includes("number")) {
+  reply = "📞 Contact Info:\n- Team: 8141331376\n- Authority: 8156005721\n- Email: uhselectrical@gmail.com";
+}
+else if (input.includes("trust") || input.includes("genuine") || input.includes("registered")) {
+  reply = "Yes! UHS ELECTRICAL is a trusted, GST-registered company with genuine services and customer support.";
+}
+else {
+  reply = `I'm not sure how to help with that 🤔<br><strong>Would you like to talk to a real person?</strong><br><button onclick="redirectToWhatsApp()" style="margin-top: 5px;">Yes, connect me</button>`;
+}
+
 	  
 
     appendMessage("UHS Assistant", reply);
