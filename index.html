@@ -129,7 +129,7 @@
     }
     .cart-icon {
       position: fixed;
-      bottom: 20px;
+      bottom: 82px;
       right: 20px;
       background: #007bff;
       color: white;
@@ -286,6 +286,7 @@
 .magnify-img:hover {
   cursor: none; /* 👈 Hide cursor when zoom is active */
 }
+
 
 	
   </style>
@@ -519,39 +520,8 @@ function filterByBrand(brand) {
     });
   });
 </script>
-<script>
-document.querySelectorAll('.magnify-img').forEach(img => {
-  const lens = document.createElement('div');
-  lens.classList.add('magnify-lens');
-  img.parentElement.style.position = 'relative';
-  img.parentElement.appendChild(lens);
 
-  lens.style.backgroundImage = `url('${img.src}')`;
-
-  img.addEventListener('mousemove', moveLens);
-  lens.addEventListener('mousemove', moveLens);
-  img.addEventListener('mouseenter', () => lens.style.visibility = 'visible');
-  img.addEventListener('mouseleave', () => lens.style.visibility = 'hidden');
-
-  function moveLens(e) {
-    const rect = img.getBoundingClientRect();
-    const x = e.pageX - rect.left - window.pageXOffset;
-    const y = e.pageY - rect.top - window.pageYOffset;
-
-    let lensX = x - lens.offsetWidth / 2;
-    let lensY = y - lens.offsetHeight / 2;
-
-    lens.style.left = lensX + 'px';
-    lens.style.top = lensY + 'px';
-
-    const zoomX = x / img.width * 100;
-    const zoomY = y / img.height * 100;
-
-    lens.style.backgroundPosition = `${zoomX}% ${zoomY}%`;
-  }
-});
-</script>
-<script>
+<!--<script>
   document.getElementById("whatsappLink").addEventListener("click", function(e) {
   const isRegistered = localStorage.getItem("isRegistered");
 
@@ -562,6 +532,87 @@ document.querySelectorAll('.magnify-img').forEach(img => {
     // ⬇ Redirect to registration page (index.html)
     window.location.href = "index.html";
   }
+});
+</script>-->
+
+<div id="ai-assistant" style="position: fixed; bottom: 90px; right: 20px; width: 300px; max-height: 400px; background: #fff; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.2); padding: 15px; display: none; flex-direction: column; z-index: 999;">
+  <div style="font-weight: bold; color: #003366;">👋 Hi! I'm your UHS Assistant</div>
+  <div id="chat-body" style="margin-top: 10px; font-size: 14px; overflow-y: auto; max-height: 250px;"></div>
+  <input type="text" id="chat-input" placeholder="Type your question..." style="margin-top: 10px; padding: 8px; width: 100%; border-radius: 5px; border: 1px solid #ccc;">
+</div>
+
+<div id="chat-toggle" style="position: fixed; bottom: 140px; right: 20px; background: #007bff; color: white; padding: 10px 15px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 999;">💬</div>
+<script>
+// Floating AI Assistant Script for UHS ELECTRICAL
+
+const chatToggle = document.getElementById("chat-toggle");
+const chatBox = document.getElementById("ai-assistant");
+const chatInput = document.getElementById("chat-input");
+const chatBody = document.getElementById("chat-body");
+
+// Toggle button open/close
+chatToggle.addEventListener("click", () => {
+  chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+});
+
+// Handle Enter press
+chatInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    const input = this.value.trim().toLowerCase();
+    if (!input) return;
+    this.value = "";
+    appendMessage("You", input);
+
+    let reply = "I'm here to help you!";
+
+    if (input.includes("service")) {
+      reply = "We offer a wide range of services like CCTV, networking, fire safety, internet setup, laptop/PC repair, and AC ducting.";
+    } else if (input.includes("price")) {
+      reply = "Prices vary by service. You can check our menu or contact UHS support for details.";
+    } else if (input.includes("quotation")) {
+      reply = "You can create a quotation by adding products to the cart 🛒.";
+    } else if (input.includes("contact")) {
+      reply = "Team Support: 8141331376<br>Authority: 8156005721<br>Email: uhselectrical@gmail.com";
+    } else if (input.includes("location")) {
+      reply = "Our office is in Rander, near Adajan, Surat. We serve the whole Surat and nearby areas.";
+    } else if (input.includes("trust")) {
+      reply = "Yes, UHS ELECTRICAL is a trusted and registered company with a valid GST number.";
+    } else if (input.includes("internet")) {
+      reply = "We are partners with Fiber Velly, GTPL, and You Broadband. For plan details, contact UHS team.";
+    }
+      else if (
+  input.includes("ac duct") || 
+  input.includes("ac cooling") || 
+  input.includes("ducting") || 
+  input.includes("cooling") || 
+  input.includes("air conditioning")
+) {
+  reply = "Yes! We offer AC ducting services for homes, offices, and commercial buildings. UHS Electrical provides high-quality duct design and installation. Contact us for inspection and pricing.";
+  }	else {
+      reply = `I'm not sure how to help with that 🤔<br><strong>Would you like to talk to a real person?</strong><br><button onclick="redirectToWhatsApp()" style="margin-top: 5px;">Yes, connect me</button>`;
+    }
+	  
+
+    appendMessage("UHS Assistant", reply);
+  }
+});
+
+// Show messages
+function appendMessage(sender, msg) {
+  const p = document.createElement("p");
+  p.innerHTML = `<strong>${sender}:</strong> ${msg}`;
+  chatBody.appendChild(p);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// WhatsApp redirect
+function redirectToWhatsApp() {
+  window.open("https://wa.me/918156005721?text=Hi%2C%20I%20need%20help%20regarding%20UHS%20Electrical%20services", "_blank");
+}
+
+// Load greeting message on page load
+window.addEventListener("load", () => {
+  chatBody.innerHTML = `<p><strong>UHS Assistant:</strong> 👋 Hello! I'm here to help you with our services. Ask anything!</p>`;
 });
 </script>
 </body>
