@@ -83,19 +83,26 @@
     <label for="productName">Product Name</label>
     <input type="text" id="productName" placeholder="Enter Product or Brand Name" />
   </div>
-  <div class="form-group">
-  <label for="price">Price (₹)</label>
-  <input type="number" id="price" placeholder="Enter product price" />
+
+ <div class="form-group">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-weight: bold; white-space: nowrap;">Price ₹</div>
+    <input type="checkbox" id="hidePriceCheckbox" style="transform: scale(1.2); margin-bottom: 2px;" />
   </div>
+  <input type="number" id="price" placeholder="Enter product price" />
+</div>
+
   <div class="form-group">
     <label for="productImage">Image URL</label>
     <input type="text" id="productImage" placeholder="Paste Image URL" />
   </div>
+
   <div class="form-group">
-  <label for="description">Description</label>
-  <textarea id="description" rows="3" placeholder="Product Description"></textarea>
-  <small id="wordCount" style="color: #777;">Words: 0 / 35</small>
-</div>
+    <label for="description">Description</label>
+    <textarea id="description" rows="3" placeholder="Product Description"></textarea>
+    <small id="wordCount" style="color: #777;">Words: 0 / 35</small>
+  </div>
+
   <div class="form-group">
     <label for="keywords">Keywords (comma separated)</label>
     <input type="text" id="keywords" placeholder="e.g., cctv, 4 channel, hd" />
@@ -143,6 +150,18 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
+  const priceInput = document.getElementById("price");
+  const hidePriceCheckbox = document.getElementById("hidePriceCheckbox");
+
+  hidePriceCheckbox.addEventListener("change", () => {
+    if (hidePriceCheckbox.checked) {
+      priceInput.disabled = true;
+      priceInput.value = "";
+    } else {
+      priceInput.disabled = false;
+    }
+  });
+
   function addProductToFirebase() {
     const productId = document.getElementById("productId").value.trim();
     if (!productId) {
@@ -162,7 +181,8 @@
           keywords: document.getElementById("keywords").value.trim(),
           brand: document.getElementById("brand").value.trim(),
           type: document.getElementById("type").value.trim(),
-          price: parseFloat(document.getElementById("price").value.trim()) || 0,
+          price: hidePriceCheckbox.checked ? 0 : parseFloat(priceInput.value.trim()) || 0,
+          hidePrice: hidePriceCheckbox.checked,
           timestamp: new Date()
         };
         productRef.set(data).then(() => {
@@ -199,9 +219,10 @@
     document.getElementById("brand").value = "";
     document.getElementById("type").value = "";
     document.getElementById("price").value = "";
+    hidePriceCheckbox.checked = false;
+    priceInput.disabled = false;
   }
-</script>
-<script>
+
   const descriptionField = document.getElementById("description");
   const wordCounter = document.getElementById("wordCount");
 

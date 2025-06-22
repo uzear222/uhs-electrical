@@ -6,7 +6,7 @@
   <meta property="og:title" content="UHS ELECTRICAL - CCTV in Surat" />
   <meta property="og:description" content="Affordable and reliable CCTV installation and services in Surat by UHS ELECTRICAL." />
   <meta property="og:image" content="https://uhselectrical.in/img/logo.png" />
-  <meta property="og:url" content="https://uhselectrical.in/page4.html" />
+  <meta property="og:url" content="https://uhselectrical.in/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <style>
@@ -273,8 +273,8 @@
   position: absolute;
   border: 2px solid #000;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   cursor: none;
   pointer-events: none;
   background-repeat: no-repeat;
@@ -349,30 +349,35 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    window.onload = function () {
-      const listContainer = document.getElementById("productList");
-      listContainer.innerHTML = "Loading products...";
+  window.onload = function () {
+    const listContainer = document.getElementById("productList");
+    listContainer.innerHTML = "Loading products...";
 
-      db.collection("products").orderBy("timestamp", "desc").get().then(snapshot => {
-        let html = "";
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          html += `
-      <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}">
-      <div class="img-container">
-		<img src="${data.image}" alt="${data.name}" class="magnify-img">
-	  </div>
-        <div class="product-details">
-          <p class="brand">${data.brand}</p>
-          <p class="product-name">${data.name}</p>
-          <p class="description">${data.description}</p>
-          <p class="price" title="Including 18% GST">₹ <span>${data.price.toLocaleString('en-IN')}/-</span>  <span style="font-size: 12px; color: gray;">(Incl. 18% GST)</span></p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
-      </div>
-    `;
-        });
-        listContainer.innerHTML = html;
+    db.collection("products").orderBy("timestamp", "desc").get().then(snapshot => {
+      let html = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const isPriceHidden = data.hidePrice === true || data.price === 0;
+        const priceHtml = isPriceHidden
+          ? `<p class="price" style="color:#888; background:#fff6e6;">Contact us for price</p>`
+          : `<p class="price" title="Including 18% GST">₹ <span>${data.price.toLocaleString('en-IN')}/-</span> <span style="font-size: 12px; color: gray;">(Incl. 18% GST)</span></p>`;
+
+        html += `
+          <div class="product-item" data-keyword="${data.keywords}" data-name="${data.name}" data-price="${data.price}" data-hideprice="${isPriceHidden}">
+            <div class="img-container">
+              <img src="${data.image}" alt="${data.name}" class="magnify-img">
+            </div>
+            <div class="product-details">
+              <p class="brand">${data.brand}</p>
+              <p class="product-name">${data.name}</p>
+              <p class="description">${data.description}</p>
+              ${priceHtml}
+              <button class="add-to-cart">Add to Cart</button>
+            </div>
+          </div>
+        `;
+      });
+      listContainer.innerHTML = html;
 		
 		// After setting listContainer.innerHTML = html;
 document.querySelectorAll('.magnify-img').forEach(img => {
@@ -407,22 +412,28 @@ document.querySelectorAll('.magnify-img').forEach(img => {
 });
 
         document.querySelectorAll(".add-to-cart").forEach(button => {
-          button.addEventListener("click", function () {
-            const product = this.closest(".product-item");
-            const name = product.getAttribute("data-name");
-            const price = parseFloat(product.getAttribute("data-price")) || 0; 
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-              existing.qty++;
-            } else {
-              cart.push({ name, price, qty: 1 });
-            }
-            updateCart();
-          });
+        button.addEventListener("click", function () {
+          const product = this.closest(".product-item");
+          const name = product.getAttribute("data-name");
+          const isHidden = product.getAttribute("data-hideprice") === "true";
+          const price = parseFloat(product.getAttribute("data-price")) || 0;
+
+          if (isHidden || price === 0) {
+            alert("⚠️ This product does not have a visible price. Please contact UHS Electrical for pricing before adding to cart.");
+            return;
+          }
+
+          const existing = cart.find(item => item.name === name);
+          if (existing) {
+            existing.qty++;
+          } else {
+            cart.push({ name, price, qty: 1 });
+          }
+          updateCart();
         });
       });
-    };
-
+    });
+  };
     // search, cart logic, etc.
     // (same as your existing working JS logic — not repeated here for brevity)
   </script>
