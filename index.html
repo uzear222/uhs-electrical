@@ -287,6 +287,18 @@
 .magnify-img:hover {
   cursor: none; /* 👈 Hide cursor when zoom is active */
 }
+.gst-number {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4a90e2;
+}
+header {
+  position: relative; /* Important for absolute child positioning */
+}
+
 
 
 	
@@ -294,7 +306,7 @@
 </head>
 <body>
 <header>
-	<p align="left">GSTIN:24MKNPS8616M1Z2</p>
+	<p class="gst-number">GSTIN: 24MKNP5861G1Z2</p>
   <h1>UHS ELECTRICAL - CCTV Products & Services</h1>
   <nav>
     <a href="page4.html">Home</a>
