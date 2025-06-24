@@ -40,7 +40,7 @@
 .hero img {
   width: 100%;
   height: 100%;
-  object-fit: contain;  /* Show full image without crop */
+  object-fit: cover;  /* Show full image without crop */
   position: absolute;
   top: 0;
   left: 0;
@@ -57,7 +57,12 @@
 /* ✅ Mobile-friendly version */
 @media (max-width: 768px) {
   .hero {
-    height: 200px; /* Smaller for phones */
+    height: auto; /* Smaller for phones */
+  }
+  .hero img {
+	hight: auto;
+	max-height: 300px;
+	object-fit: cover;
   }
 }
 
