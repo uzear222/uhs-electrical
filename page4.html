@@ -135,15 +135,11 @@
     this.reset();
   });
 
-  // 🔸 Explore Button → Conditional Navigation
-  document.getElementById("exploreBtn").addEventListener("click", function() {
-    const registered = localStorage.getItem("isRegistered");
-    if (registered === "true") {
-      window.location.href = "index.html";
-    } else {
-      alert("Please register first before exploring services.");
-    }
-  });
+  // 🔓 Explore Button → Always Allow
+document.getElementById("exploreBtn").addEventListener("click", function() {
+  window.location.href = "index.html"; // or your correct destination
+});
+
 </script>
 
 </body>
