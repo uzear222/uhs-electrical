@@ -94,30 +94,27 @@
   const db = getDatabase(app);
 
   // 🔹 Handle Registration Form
-  document.getElementById("registrationForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+ document.getElementById("registrationForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    const name = document.getElementById("regName").value.trim();
-    const number = document.getElementById("regNumber").value.trim();
-    const email = document.getElementById("regEmail").value.trim();
+  const name = document.getElementById("regName").value.trim();
+  const number = document.getElementById("regNumber").value.trim();
+  const email = document.getElementById("regEmail").value.trim();
 
-    if (name !== "" && number !== "" && email !== "") {
-      push(ref(db, "registrations"), {
-        name, number, email,
-        timestamp: new Date().toISOString()
-      });
+  if (name !== "" && number !== "" && email !== "") {
+    push(ref(db, "registrations"), {
+      name, number, email,
+      timestamp: new Date().toISOString()
+    });
 
-      // ✅ Save registration status locally
-      localStorage.setItem("isRegistered", "true");
+    localStorage.setItem("isRegistered", "true");
+    document.getElementById("form-message").style.display = "block";
+    this.reset();
 
-      document.getElementById("form-message").style.display = "block";
-      this.reset();
+    // 🔓 Redirect removed
+  }
+});
 
-      setTimeout(() => {
-  window.location.href = "page2.html";
-}, 1500); // 1.5 second ke baad page2 pe redirect
-    }
-  });
 
   // 🔸 Handle Review Form
   document.getElementById("reviewForm").addEventListener("submit", function(e) {
