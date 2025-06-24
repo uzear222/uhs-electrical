@@ -115,9 +115,20 @@
   font-weight: bold;
   color: #4a90e2;
 }
+
+/* Add this to ensure header has relative position */
 header {
-  position: relative; /* Important for absolute child positioning */
+  position: relative;
+  padding-top: 50px; /* Add top padding to make room for GST number */
 }
+@media (max-width: 600px) {
+  .gst-number {
+    font-size: 12px;
+    top: 5px;
+    right: 10px;
+  }
+}
+
 	
 
   </style>
