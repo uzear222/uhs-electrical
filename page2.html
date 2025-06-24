@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UHS Electrical - Home</title>
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -29,18 +29,31 @@
       text-decoration: none;
       font-weight: bold;
     }
+
     .hero {
-      position: relative;
-      overflow: hidden;
-      max-height: 400px;
-    }
-    .hero img {
-      width: 100%;
-      display: none;
-    }
+		position: relative;
+		width: 100%;
+		height: auto; /* adjust as needed */
+		overflow: hidden;
+	}
+
+	.hero img {
+		position: absolute;
+		width: 100%;
+		height: auto;
+		object-fit: cover; /* fills without stretching */
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		transition: opacity 1s ease-in-out;
+	}
+	
     .hero img.active {
-      display: block;
+      opacity: 1;
+      z-index: 1;
     }
+
     .section {
       padding: 40px 20px;
       text-align: center;
@@ -48,13 +61,28 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      gap: 10px;
     }
     .service-card {
-      border: 1px solid #ccc;
-      padding: 20px;
+      width: 200px;
+      height: auto;
+      border: 1px solid #ddd;
       border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      overflow: hidden;
+      background: #fff;
+      margin: auto;
     }
+    .service-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 10px auto;
+      display: block;
+    }
+
     .whatsapp-float {
       position: fixed;
       bottom: 20px;
@@ -65,125 +93,73 @@
       width: 48px;
       height: 48px;
     }
-	.service-card {
-  width: 200px;
-  height: auto;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  overflow: hidden;
-  background: #fff;
-}
+	@media (max-width: 600px) {
+  .hero {
+    height: auto; /* No fixed height on mobile */
+  }
 
-.service-card img {
-  width: 100px; /* or max-width: 100% */
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  .hero img {
+    object-fit: contain; /* show full image without cropping */
+    position: static;
+  }
 }
-.banner {
-  width: 100%;
-  height: 100vh; /* full screen height */
-  overflow: hidden;
-}
-
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* this keeps the image full without distortion */
-  display: block;
-}
-.hero {
-  width: 100%;
-  height: 100vh; /* or 500px if you want fixed height */
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-.hero img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-
-
 
   </style>
 </head>
 <body>
+
   <header>
     <h1>UHS ELECTRICAL</h1>
     <p>Your One-Stop Solution for CCTV, Internet & IT Services</p>
   </header>
 
   <nav>
-    <a href="index.html">Home</a>
+    <a href="index.html">Shopping Area</a>
     <a href="page4.html">Registration</a>
     <a href="page2.html">Services</a>
     <a href="page3.html">About</a>
   </nav>
 
+  <!-- ✅ Hero Slider Section -->
   <section class="hero">
-	<div class="banner">
-		<img src="img/benner1.png" alt="Banner" />
-	</div>
-	<div class="banner">
-    <img src="" class="active" />
-    </div>
-	<div class="banner">
-	<img src="banner2.jpg" />
-    </div>
-	<div class="banner">
-	<img src="banner3.jpg" />
-	</div>
+    <img src="img/benner1.jpg" class="active" alt="Banner" />
+    <img src="img/benner2.webp" alt="Banner" />
+    <img src="img/benner3.webp" alt="Banner" />
+    <img src="img/benner4.webp" alt="Banner" />
   </section>
 
+  <!-- ✅ Services Section -->
   <section class="section">
     <h2>Our Services</h2>
     <div class="services-grid">
-     <div class="service-card">
-		<img src="img/clogo.jpg" alt="CCTV Icon">
-		CCTV Installation & Maintenance
-	  </div>
       <div class="service-card">
-		<img src="img/dlogo.png" alt="laptop Icon">
-		Laptop/Desktop Repair & Sales
-	  </div>
+        <img src="img/clogo.jpg" alt="CCTV Icon">
+        CCTV Installation & Maintenance
+      </div>
       <div class="service-card">
-	  <img src="img/ilogo.png" alt="internet Icon">
-	  Internet <small> <br>(Fiber velly, GTPL, You Broadband) </small>
-	  </div>
+        <img src="img/dlogo.png" alt="Laptop Icon">
+        Laptop/Desktop Repair & Sales
+      </div>
       <div class="service-card">
-		<img src="img/alogo.png" alt="internet Icon">	
-		 AC Installation & Maintenance
-	  </div>
+        <img src="img/ilogo.png" alt="Internet Icon">
+        Internet <br><small>(Fiber velly, GTPL, You Broadband)</small>
+      </div>
       <div class="service-card">
-		<img src="img/flogo.png" alt="internet Icon">	
-		 Fire Safety Maintenance
-	  </div>
+        <img src="img/alogo.png" alt="AC Icon">
+        AC Installation & Maintenance
+      </div>
       <div class="service-card">
-		<img src="img/amclogo.png" alt="internet Icon">
-		 AMC Support</div>
+        <img src="img/flogo.png" alt="Fire Icon">
+        Fire Safety Maintenance
+      </div>
+      <div class="service-card">
+        <img src="img/amclogo.png" alt="AMC Icon">
+        AMC Support
+      </div>
     </div>
   </section>
 
+  <!-- ✅ Why Choose Us Section -->
   <section class="section">
     <h2>Why Choose Us?</h2>
     <p>✅ Trusted Local Team</p>
@@ -192,17 +168,22 @@
     <p>💬 WhatsApp Booking</p>
   </section>
 
+  <!-- ✅ Footer -->
   <footer class="section">
     <p>&copy; 2025 UHS Electrical | Surat</p>
-    <p><a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a> | <a href="tel:+918156005721">+91 81560 05721</a></p>
+    <p><a href="mailto:uhselectrical@gmail.com">uhselectrical@gmail.com</a> | 
+       <a href="tel:+918156005721">+91 81560 05721</a>
+    </p>
   </footer>
 
+  <!-- ✅ WhatsApp Button -->
   <a href="https://wa.me/918156005721" class="whatsapp-float" target="_blank">
     <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat" />
   </a>
 
+  <!-- ✅ Slider Script -->
   <script>
-    const slides = document.querySelectorAll(".hero");
+    const slides = document.querySelectorAll(".hero img");
     let index = 0;
     setInterval(() => {
       slides[index].classList.remove("active");
@@ -210,5 +191,6 @@
       slides[index].classList.add("active");
     }, 3000);
   </script>
+
 </body>
 </html>
