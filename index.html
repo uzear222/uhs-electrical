@@ -489,6 +489,8 @@ function filterByBrand(brand) {
     cartPanel.classList.remove("open");
   });
 
+//	const whatsappLink = document.getElementById("whatsappLink");
+
   function updateCart() {
     document.getElementById("cartCount").textContent = cart.length;
     cartItemsContainer.innerHTML = "";
@@ -547,7 +549,7 @@ function filterByBrand(brand) {
   });
 </script>
 
-<!--<script>
+<script>
   document.getElementById("whatsappLink").addEventListener("click", function(e) {
   const isRegistered = localStorage.getItem("isRegistered");
 
@@ -559,7 +561,7 @@ function filterByBrand(brand) {
     window.location.href = "index.html";
   }
 });
-</script>-->
+</script>
 
 <div id="ai-assistant" style="position: fixed; bottom: 90px; right: 20px; width: 300px; max-height: 400px; background: #fff; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.2); padding: 15px; display: none; flex-direction: column; z-index: 999;">
   <div style="font-weight: bold; color: #003366;">👋 Hi! I'm your UHS Assistant</div>
