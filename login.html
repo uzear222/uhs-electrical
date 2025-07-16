@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login - UHS ELECTRICAL</title>
+  <!-- ✅ Firebase v9 Compat CDN (NO import needed) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <style>
+    body {
+      background: #f2f6fc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-card {
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 360px;
+    }
+
+    h2 {
+      color: #1e4fa4;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 span {
+      display: block;
+      font-size: 14px;
+      font-weight: normal;
+      color: #777;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #1e4fa4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #163b7a;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h2>UHS ELECTRICAL<br><span>Dashboard Login</span></h2>
+    <input type="email" id="email" placeholder="Admin Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    // ✅ Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAIF0mh224jNWKeb981w9-bQf243c9PKtQ",
+      authDomain: "uhs-electrical.firebaseapp.com",
+      databaseURL: "https://uhs-electrical-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "uhs-electrical",
+      storageBucket: "uhs-electrical.firebasestorage.app",
+      messagingSenderId: "1078862466393",
+      appId: "1:1078862466393:web:71690cc373bfae245c1048"
+    };
+
+    // ✅ Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          alert("✅ Login successful!");
+          window.location.href = "list.html";
+        })
+        .catch((error) => {
+          alert("❌ Login failed: " + error.message);
+        });
+    }
+  </script>
+</body>
+</html>

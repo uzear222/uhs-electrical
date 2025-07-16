@@ -134,9 +134,24 @@
   <a href="page2.html" style="text-decoration: none; background: #28a745; color: white; padding: 10px 20px; border-radius: 5px;">🔍 View Page4 Products</a>
 </div>
 
+<button onclick="logout()">Logout</button>
+
+<script>
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      alert("Logged out!");
+      window.location.href = "admin-login.html";
+    });
+  }
+</script>
+
+
+
+
 <!-- ✅ Firebase Scripts -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 
 <script>
   const firebaseConfig = {
@@ -150,25 +165,31 @@
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
+  const auth = firebase.auth();
 
+  // ✅ Auth Check to block direct access
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      alert("Access denied! Please login.");
+      window.location.href = "admin-login.html";
+    }
+  });
+
+  // ✅ Price Hide Toggle
   const priceInput = document.getElementById("price");
   const hidePriceCheckbox = document.getElementById("hidePriceCheckbox");
 
   hidePriceCheckbox.addEventListener("change", () => {
+    priceInput.disabled = hidePriceCheckbox.checked;
     if (hidePriceCheckbox.checked) {
-      priceInput.disabled = true;
       priceInput.value = "";
-    } else {
-      priceInput.disabled = false;
     }
   });
 
+  // ✅ Add Product
   function addProductToFirebase() {
     const productId = document.getElementById("productId").value.trim();
-    if (!productId) {
-      alert("❗ Product ID is required");
-      return;
-    }
+    if (!productId) return alert("❗ Product ID is required");
 
     const productRef = db.collection("products").doc(productId);
     productRef.get().then((doc) => {
@@ -186,6 +207,7 @@
           hidePrice: hidePriceCheckbox.checked,
           timestamp: new Date()
         };
+
         productRef.set(data).then(() => {
           alert("✅ Product added successfully!");
           clearForm();
@@ -196,12 +218,10 @@
     });
   }
 
+  // ✅ Delete Product
   function deleteProductFromFirebase() {
     const deleteId = document.getElementById("deleteProductId").value.trim();
-    if (!deleteId) {
-      alert("❗ Enter product ID to delete.");
-      return;
-    }
+    if (!deleteId) return alert("❗ Enter product ID to delete.");
 
     db.collection("products").doc(deleteId).delete().then(() => {
       alert(`🗑 Product with ID '${deleteId}' deleted.`);
@@ -211,6 +231,7 @@
     });
   }
 
+  // ✅ Clear Input Form
   function clearForm() {
     document.getElementById("productId").value = "";
     document.getElementById("productName").value = "";
@@ -224,6 +245,7 @@
     priceInput.disabled = false;
   }
 
+  // ✅ Word Count Limit on Description
   const descriptionField = document.getElementById("description");
   const wordCounter = document.getElementById("wordCount");
 
@@ -239,6 +261,17 @@
     wordCounter.textContent = `Words: ${Math.min(wordCount, 35)} / 35`;
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
